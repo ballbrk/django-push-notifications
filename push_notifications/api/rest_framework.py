@@ -99,7 +99,8 @@ class GCMDeviceSerializer(ModelSerializer):
 			devices = GCMDevice.objects.filter(registration_id=attrs["registration_id"])
 
 		if devices:
-			raise ValidationError({'registration_id': 'This field must be unique.'})
+			devices.delete()
+			#raise ValidationError({'registration_id': 'This field must be unique.'})
 		return attrs
 
 
